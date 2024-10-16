@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Welcome to the PMSSS website, where you can learn about scholarships, eligibility, and more.">
+    <title>PMSSS Website</title>
+    <link rel="stylesheet" href="Homepage.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="Homepage.html"><img src="pmsss_logo.jpeg" alt="PMSSS Logo"></a>
+        </div>
+        <nav>
+            <ul class="nav-center">
+                <li><a href="About.html" aria-label="Learn more about PMSSS programs">Learn More About PMSSS</a></li>
+                <li><a href="#" aria-label="View the latest announcements">Announcements</a></li>
+                <li><a href="Contact.html" aria-label="Get in touch with us">Contact Us</a></li>
+            </ul>
+            <ul class="nav-right">
+                <li><a href="#" aria-label="Login to your account">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <div class="photos-section">
+            <div class="photo-slider">
+                <div class="photo-track">
+                    <img src="Phyang_Monastery_01.jpg" alt="Image 1">
+                    <img src="Nubra_Valley_view_with_Reflection.webp" alt="Image 2">
+                    <img src="2015-07-28-Ladakh-G16.webp" alt="LImage 3">
+                    <img src="360_F_165087192_lSwjQ1ER3yTWG1s2RmH1HwffZLkzbqCC.webp" alt="Image 4">
+                </div>
+                <button class="prev" aria-label="Previous image">❮</button>
+                <button class="next" aria-label="Next image">❯</button>
+            </div>
+        </div>
+        
+        <section class="content">
+            <article class="announcements">
+                <h3>Announcements</h3>
+                <div class="scrolling-announcements">
+                    <p>Stay tuned for updates!</p>
+                    <p>Scholarship applications are open!</p>
+                    <p>New eligible colleges added!</p>
+                </div>
+            </article>
+            
+            <div class="buttons-section">
+                <div class="button-grid">
+                    <a href="Eligible.html"><div class="button">Who is Eligible?</div></a>
+                    <a href="#"><div class="button">FAQs</div></a>
+                    <a href="Scholarships.html"><div class="button">Scholarships Offered</div></a>
+                    <a href="Work.html"><div class="button">How It Works?</div></a>
+                    <a href="Rejection.html"><div class="button">Reasons for Rejections</div></a>
+                    <a href="#"><div class="button">Apply for Scholarship</div></a>
+                    <a href="#"><div class="button">Eligible Colleges</div></a>
+                    <div class="empty-space">Space for adding any other buttons</div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="flowchart">
+            <div class="row">
+                <div class="box">Online registration and uploading of documents by students.</div>
+                <div class="arrow"></div>
+                <div class="box">Verification of student details by institution.</div>
+                <div class="arrow"></div>
+                <div class="box">Forwarding of verified students list to SAG.</div>
+                <div class="arrow"></div>
+                <div class="box">Verification and sanctioning of scholarship by SAG.</div>
+            </div>
+            <div class="row">
+                <div class="curved-arrow"></div>
+                <div class="arrow-line"></div>
+                <div class="arrow-straight-line"></div>
+                <div class="box">Forwarding of sanctioned student list to Finance Bureau.</div>
+                <div class="arrow-left"></div>
+                <div class="box">Verification of bank account by Finance Bureau.</div>
+                <div class="arrow-left"></div>
+                <div class="box">Release of amount by Finance Bureau.</div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-left">
+                <p>Contact Info:</p>
+                <p>E-mail: <a href="mailto:jkadmission2024@aicte-india.org">jkadmission2024@aicte-india.org</a></p>
+            </div>
+            <div class="footer-center">
+                <p>&copy; 2024 SAG and Finance Bureau. All rights reserved.</p>
+            </div>
+            <div class="footer-right">
+                <p>Important Links:</p>
+                <ul>
+                    <li><a href="https://dcf.aishe.nic.in/aishenew/#/details/knowAisheCode" target="_blank" aria-label="Check your AISHE Code here">AISHE Code</a></li>
+                    <li><a href="https://scholarships.gov.in/" target="_blank" aria-label="Visit the NSP Portal for scholarships">NSP Portal</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const track = document.querySelector('.photo-track');
+        const images = document.querySelectorAll('.photo-track img');
+        let currentIndex = 0;
+        let interval;
+    
+        // Initially show the first image
+        images[currentIndex].classList.add('active');
+    
+        function updateSlider() {
+            images.forEach((img) => img.classList.remove('active')); // Hide all images
+            images[currentIndex].classList.add('active'); // Show current image
+        }
+    
+        function startAutoSlide() {
+            interval = setInterval(() => {
+                currentIndex = (currentIndex + 1) % images.length; // Move to the next image
+                updateSlider();
+            }, 3000); // 3000 milliseconds (3 seconds)
+        }
+    
+        function stopAutoSlide() {
+            clearInterval(interval);
+        }
+    
+        // Next button click event
+        document.querySelector('.next').addEventListener('click', () => {
+            stopAutoSlide(); // Stop auto slide
+            currentIndex = (currentIndex + 1) % images.length; // Move to next image
+            updateSlider();
+            startAutoSlide(); // Restart auto slide
+        });
+    
+        // Previous button click event
+        document.querySelector('.prev').addEventListener('click', () => {
+            stopAutoSlide(); // Stop auto slide
+            currentIndex = (currentIndex - 1 + images.length) % images.length; // Move to previous image
+            updateSlider();
+            startAutoSlide(); // Restart auto slide
+        });
+    
+        // Start auto slide
+        startAutoSlide();
+    
+        // Pause on hover
+        track.addEventListener('mouseenter', stopAutoSlide);
+        track.addEventListener('mouseleave', startAutoSlide);
+    </script>
+</body>
+</html>
